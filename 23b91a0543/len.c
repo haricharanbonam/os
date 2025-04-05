@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<string.h>
+struct Student
+{
+	char name[10];
+	char branch[5];
+	char  loc[20];
+};
+int main(){
+	FILE *f1;
+	f1=fopen("student.txt","r");
+	struct Student st;
+	while((fscanf(f1,"%s %s %s\n",st.name,st.branch,st.loc))!=EOF)
+	{
+	int a = strlen(st.name);
+	int b= strlen(st.branch);
+	int c = strlen(st.loc);
+	printf(" %d ",a);
+	printf("%s",st.name);
+	printf(" %d ",b);
+	printf("%s",st.branch);
+	printf(" %d ",c);
+	printf("%s",st.loc);
+
+	printf("\n");
+	}
+return 0;
+}
