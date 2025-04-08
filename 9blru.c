@@ -26,7 +26,8 @@ int least(int fr[],int a[],int curr)
     int replace=-1;
     for(int j=0;j<SIZE;j++)
     {
-        for(int i=curr;i>=0;i--)
+        int i;
+        for( i=curr-1;i>=0;i--)
         {
             if(fr[j]==a[i])
             {
@@ -34,10 +35,12 @@ int least(int fr[],int a[],int curr)
                 {
                     index=i;
                     replace=j;
-                    break;
                 }
+                    break;
             }
         }
+        if(i<0)
+        return j;
     }
     return replace;
 }
