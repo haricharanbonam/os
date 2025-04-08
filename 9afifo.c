@@ -23,6 +23,7 @@ void display(int arr[]) {
 int main() {
     int a[100];
     int n;
+    int hit=0;
     
     printf("Enter number of pages: ");
     scanf("%d", &n);
@@ -43,9 +44,9 @@ int main() {
 
     for(int i = 0; i < n; i++) {
         if(found(fr, a[i])) {
+            hit++;
             continue;
         }
-
         if(empty > 0) {
             fr[SIZE - empty] = a[i]; 
             empty--;
@@ -59,5 +60,6 @@ int main() {
     }
 
     printf("Total Page Faults: %d\n", tot);
+    printf("Total   Hits : %d\n", hit);
     return 0;
 }
