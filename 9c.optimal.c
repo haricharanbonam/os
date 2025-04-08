@@ -20,7 +20,7 @@ void display(int arr[]) {
     printf("\n");
 }
 
-int least(int fr[],int a[],int curr,int n)
+int optimal(int fr[],int a[],int curr,int n)
 {
     int index=-1;
     int replace=-1;
@@ -77,7 +77,7 @@ int main() {
             fr[SIZE - empty] = a[i]; 
             empty--;
         } else {
-            int r = least(fr,a,i,n);
+            int r = optimal(fr,a,i,n);
             fr[r]=a[i];
         }
 
