@@ -1,65 +1,63 @@
 #include<stdio.h>
 #include<stdbool.h>
-bool found(int arr[],int n,int k)
-{
-	for(int i=0;i<n;i++)
-	{
-		if(arr[i]==k)
-		{
-			return true;
-		}
-	}
-	return false;
+
+#define SIZE 3 
+
+bool found(int arr[], int k) {
+    for(int i = 0; i < SIZE; i++) {
+        if(arr[i] == k) {
+            return true;
+        }
+    }
+    return false;
 }
-bool display(int arr[],int n)
-{
-	for(int i=0;i<n;i++)
-	{
-		printf("%d ",arr[i]);
-	}
-	printf("\n");
+
+void display(int arr[]) {
+    for(int i = 0; i < SIZE; i++) {
+        if(arr[i] != -1)
+            printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
-int main()
-{
-	int a[100];
-	int n;
-	scanf("%d",&n);
-	printf("enter ref string :");
-	for(int i=0;i<n;i++)
-	{
-		scanf("%d",&a[i]);
-	}
-	
-	
-	int fr[3];
-	int empty=3;
-	int tot=0;
-	int index=0;
-	for(int i=0;i<n;i++)
-	{
-		if(empty>0)
-		{
-			fr[3-empty]=a[i];
-			empty--;
-			tot++;
-			display(fr,3-empty);
-		}
-		else
-		{
-			if(found(fr,3,a[i]))
-			{
-				continue;
-			}
-			else
-			{
-				fr[index]=a[i];
-				display(fr,3);
-				index=(index+1)%3;
-				tot++;
-				
-			}
-			
-		}
-	}
-	printf("%d",tot);
+
+int main() {
+    int a[100];
+    int n;
+    
+    printf("Enter number of pages: ");
+    scanf("%d", &n);
+    
+    printf("Enter reference string: ");
+    for(int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    int fr[SIZE];
+    for(int i = 0; i < SIZE; i++) {
+        fr[i] = -1;
+    }
+
+    int empty = SIZE;    
+    int tot = 0;       
+    int index = 0;     
+
+    for(int i = 0; i < n; i++) {
+        if(found(fr, a[i])) {
+            continue;
+        }
+
+        if(empty > 0) {
+            fr[SIZE - empty] = a[i]; 
+            empty--;
+        } else {
+            fr[index] = a[i]; 
+            index = (index + 1) % SIZE;
+        }
+
+        tot++; 
+        display(fr);
+    }
+
+    printf("Total Page Faults: %d\n", tot);
+    return 0;
 }
